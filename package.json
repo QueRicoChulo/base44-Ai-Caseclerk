@@ -1,0 +1,78 @@
+{
+  "name": "caseclerk-ai",
+  "version": "1.0.0",
+  "description": "CaseClerk AI - Complete Legal Practice Management System",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend",
+    "electron"
+  ],
+  "scripts": {
+    "install:all": "npm install && npm run install:frontend && npm run install:backend && npm run install:electron",
+    "install:frontend": "cd frontend && npm install",
+    "install:backend": "cd backend && npm install", 
+    "install:electron": "cd electron && npm install",
+    
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:electron": "cd electron && npm run dev",
+    
+    "build": "npm run build:frontend && npm run build:backend && npm run build:electron",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "build:electron": "cd electron && npm run build",
+    
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
+    "start:frontend": "cd frontend && npm run start",
+    "start:backend": "cd backend && npm run start",
+    "start:electron": "cd electron && npm run start",
+    
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "cd frontend && npm run test",
+    "test:backend": "cd backend && npm run test",
+    
+    "lint": "npm run lint:frontend && npm run lint:backend",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:backend": "cd backend && npm run lint",
+    
+    "deploy": "npm run build && npm run deploy:production",
+    "deploy:production": "pm2 start deployment/pm2.config.js --env production",
+    "deploy:staging": "pm2 start deployment/pm2.config.js --env staging",
+    
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    
+    "backup": "node deployment/scripts/backup.js",
+    "restore": "node deployment/scripts/restore.js",
+    "health": "node deployment/scripts/health-check.js"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "pm2": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/base44/caseclerk-ai.git"
+  },
+  "keywords": [
+    "legal",
+    "practice-management", 
+    "ai",
+    "law-firm",
+    "case-management",
+    "nextjs",
+    "nodejs",
+    "typescript"
+  ],
+  "author": "Base44",
+  "license": "MIT"
+}

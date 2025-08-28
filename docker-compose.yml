@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  # Frontend - Next.js Application
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://backend:8000
+      - NEXT_PUBLIC_BASE44_API_KEY=${BASE44_API_KEY}
+    depends_on:
+      - backend
+    networks:
+      - caseclerk-network
+    restart: unless-stopped
+
+  # Backend - Node.js API Server
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=production
+      - PORT=8000
+      - JWT_SECRET=${JWT_SECRET}
+      - BASE44_API_KEY=${BASE44_API_KEY}
+      - BASE44_API_URL=${BASE44_API_URL}
+      - DATABASE_URL=${DATABASE_URL}
+    volumes:
+      - ./backend/uploads:/app/uploads
+      - ./backend/logs:/app/logs
+    networks:
+      - caseclerk-network
+    restart: unless-stopped
+
+  # Nginx - Reverse Proxy & Load Balancer
+  nginx:
+    build:
+      context: ./deployment/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deployment/nginx/conf.d:/etc/nginx/conf.d
+      - ./deployment/ssl:/etc/nginx/ssl
+      - ./frontend/out:/var/www/html
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - caseclerk-network
+    restart: unless-stopped
+
+  # Redis - Session Store & Caching
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - caseclerk-network
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+
+  # PostgreSQL - Database (Optional - if not using Base44)
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=caseclerk_ai
+      - POSTGRES_USER=${DB_USER:-caseclerk}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./deployment/database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - caseclerk-network
+    restart: unless-stopped
+
+networks:
+  caseclerk-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  redis-data:

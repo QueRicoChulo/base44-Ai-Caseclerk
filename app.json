@@ -1,0 +1,47 @@
+{
+  "name": "CaseClerk AI",
+  "description": "AI-Powered Legal Practice Management System",
+  "repository": "https://github.com/your-username/caseclerk-ai",
+  "logo": "https://via.placeholder.com/200x200/f59e0b/ffffff?text=CaseClerk+AI",
+  "keywords": ["legal", "ai", "practice-management", "nextjs", "nodejs"],
+  "image": "heroku/nodejs",
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:mini"
+    },
+    {
+      "plan": "heroku-redis:mini"
+    }
+  ],
+  "env": {
+    "NODE_ENV": {
+      "value": "production"
+    },
+    "JWT_SECRET": {
+      "generator": "secret"
+    },
+    "BASE44_API_KEY": {
+      "description": "Your Base44 API key",
+      "required": true
+    },
+    "BASE44_API_URL": {
+      "description": "Your Base44 API URL",
+      "required": true
+    }
+  },
+  "scripts": {
+    "postdeploy": "npm run build"
+  }
+}

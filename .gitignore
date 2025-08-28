@@ -1,0 +1,237 @@
+# CaseClerk AI - Git Ignore File
+
+# ==============================================
+# ENVIRONMENT & SECRETS
+# ==============================================
+.env
+.env.local
+.env.production
+.env.staging
+*.env
+
+# ==============================================
+# DEPENDENCIES
+# ==============================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ==============================================
+# BUILD OUTPUTS
+# ==============================================
+# Frontend
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/dist/
+
+# Backend
+backend/dist/
+backend/build/
+
+# Electron
+electron/dist/
+electron/release/
+electron/app/
+
+# ==============================================
+# LOGS
+# ==============================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# PM2 logs
+.pm2/
+
+# ==============================================
+# RUNTIME DATA
+# ==============================================
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# ==============================================
+# COVERAGE & TESTING
+# ==============================================
+coverage/
+*.lcov
+.nyc_output/
+
+# Jest
+jest-coverage/
+
+# ==============================================
+# CACHES
+# ==============================================
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# Next.js
+.next/
+
+# Nuxt.js
+.nuxt/
+
+# ==============================================
+# TEMPORARY FILES
+# ==============================================
+tmp/
+temp/
+*.tmp
+*.temp
+
+# ==============================================
+# UPLOADS & USER DATA
+# ==============================================
+uploads/
+user-data/
+storage/
+
+# ==============================================
+# DATABASE
+# ==============================================
+*.sqlite
+*.sqlite3
+*.db
+
+# ==============================================
+# SSL CERTIFICATES
+# ==============================================
+deployment/ssl/*.key
+deployment/ssl/*.crt
+deployment/ssl/*.pem
+*.key
+*.crt
+*.pem
+
+# ==============================================
+# BACKUPS
+# ==============================================
+backups/
+*.backup
+*.sql.gz
+
+# ==============================================
+# DOCKER
+# ==============================================
+.dockerignore
+
+# ==============================================
+# IDE & EDITOR FILES
+# ==============================================
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ==============================================
+# OPERATING SYSTEM FILES
+# ==============================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# ==============================================
+# PACKAGE MANAGERS
+# ==============================================
+# npm
+package-lock.json
+npm-shrinkwrap.json
+
+# Yarn
+yarn.lock
+.yarn/
+.pnp.*
+
+# pnpm
+pnpm-lock.yaml
+
+# ==============================================
+# DEPLOYMENT
+# ==============================================
+# PM2
+ecosystem.config.js
+
+# Docker
+docker-compose.override.yml
+
+# Kubernetes
+*.yaml.local
+
+# ==============================================
+# MONITORING & ANALYTICS
+# ==============================================
+# Error tracking
+.sentry/
+
+# Analytics
+.vercel/
+
+# ==============================================
+# MISC
+# ==============================================
+.sass-cache/
+.connect.lock
+.grunt/
+.lock-wscript
+.wafpickle-*
+.task-runner-cache/
+.jspm/
+typings/
+.npm/
+.eslintcache
+.node_repl_history
+.yarn-integrity
+.env.test
+.cache/
+.parcel-cache/
