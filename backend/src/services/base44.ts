@@ -6,8 +6,8 @@
 
 import axios, { AxiosInstance } from 'axios';
 
-const BASE44_API_URL = process.env.BASE44_API_URL || 'https://app.base44.com/api/apps/68a362a1664b8f811bac8895';
-const BASE44_API_KEY = process.env.BASE44_API_KEY || '0fdc722fdcac4237a61e75148cf3f8b1';
+const BASE44_API_URL = process.env.BASE44_API_URL || 'API_URL_HERE';
+const BASE44_API_KEY = process.env.BASE44_API_KEY || 'API_KEY_HERE';
 
 /**
  * Base44 API client configuration
